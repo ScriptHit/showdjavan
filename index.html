@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contagem Regressiva para o Show</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffe0f0; /* Fundo mais suave */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    margin: 0;
+  }
+  .countdown {
+    text-align: center;
+    background: #ffffff;
+    border-radius: 20px; /* Bordas mais arredondadas */
+    padding: 30px; /* Mais espaço interno */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra mais suave */
+    width: auto;
+    max-width: 90%;
+  }
+  .countdown h1 {
+    color: #ff4081; /* Cor mais vibrante */
+    font-size: 2.5rem; /* Tamanho de fonte maior */
+    margin-bottom: 20px; /* Mais espaço abaixo do título */
+  }
+  .time {
+    color: #d6336c; /* Cor mais profunda */
+    font-size: 2rem; /* Tamanho de fonte maior para o tempo */
+    margin: 10px 0;
+    letter-spacing: 2px; /* Espaçamento entre letras */
+  }
+  img {
+    margin-top: 20px;
+    width: 90%; /* Adaptação para a largura */
+    border-radius: 20px; /* Bordas mais arredondadas para a imagem */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra mais suave */
+  }
+</style>
+</head>
+<body>
+
+<div class="countdown">
+  <h1>Contagem Regressiva para o Show!</h1>
+  <div id="timer" class="time">
+    <span id="days"></span>d
+    <span id="hours"></span>h
+    <span id="minutes"></span>m
+    <span id="seconds"></span>s
+  </div>
+</div>
+<img src="image.jpg" alt="Imagem Romântica">
+
+<script>
+  function countdown() {
+    const countDate = new Date("May 12, 2024 18:00:00").getTime();
+    const now = new Date().getTime();
+    const gap = countDate - now;
+
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+
+    const textDay = Math.floor(gap / day);
+    const textHour = Math.floor((gap % day) / hour);
+    const textMinute = Math.floor((gap % hour) / minute);
+    const textSecond = Math.floor((gap % minute) / second);
+
+    document.getElementById("days").innerText = textDay;
+    document.getElementById("hours").innerText = textHour;
+    document.getElementById("minutes").innerText = textMinute;
+    document.getElementById("seconds").innerText = textSecond;
+
+    if (gap < 0) {
+      clearInterval(interval);
+      document.getElementById("timer").innerHTML = "<span style='font-size: 1.8rem;'>💖 O show começou! Aproveite cada momento! 💖</span>";
+    }
+  }
+
+  let interval = setInterval(countdown, 1000);
+</script>
+
+</body>
+</html>
